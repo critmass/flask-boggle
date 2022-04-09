@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Flask Boggle
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1 class="title">
+            Flask Boggle
+        </h1>
+        <p class="messages"></p>
+        <p>
+            High Score: {{ highscore }}
+        </p>
+        <p>
+            Score: <span class="score">0</span>
+            Time Left: <span class="timer">0</span>seconds
+        </p>
+        <table class="board">
+            <tbody>
+                {% for row in board %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>
+                                {{cell}}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="POST" class="submit-word">
+            <input name="word" class="word" autofocus>
+            <input type="submit">
+        </form>
+        <ul class="words"></ul>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let game = new BoggleGame("boggle", 60)
+    </script>
+{% endblock %}
